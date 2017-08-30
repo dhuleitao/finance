@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="default" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="myinterceptor" class="interceptor.MyInterceptor" />
+			<interceptor-stack name="myinterceptorstack">
+				<interceptor-ref name="myinterceptor">
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack">
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myinterceptorstack"></default-interceptor-ref>
+		<global-results>
+			<result name="unlogin" type="">/error_page/unlogin_error.jsp</result>
+			<result name="login_repeat" type="">/error_page/repeatlogin.jsp</result>
+			<result name="no_record">/error_page/empty_error.jsp</result>
+			<result name="exception">/error_page/exception_error.jsp</result>
+		</global-results>
+	</package>
+
+
+<package name="admins" namespace="/admins" extends="default">
+		<action name="*_*" class="action.{1}Action" method="{2}">
+			<result name="ppp">/admins/dealsuccess.jsp</result>
+			<result name="viewFinsuccess_success">/admins/dealsuccess.jsp</result>
+		<result name="fresh_ok">/admins/dealing.jsp</result>
+		<result name="get_detail">/admins/detail.jsp</result>
+		<result name="viewFinfail_success">/admins/dealfail.jsp</result>
+		<result name="alipay_page">/admins/pay.jsp</result>
+		<result name="viewFining_success">/admins/dealing.jsp</result>
+		<result name="no_record">/admins/dealing.jsp</result>
+		<result name="success_failed">/admins/dealing.jsp</result>
+		<result name="update_success">/admins/private.jsp</result>
+		<result name="changePwd_success">/admins/relogin.jsp</result>
+		<result name="changePwd_failed">/admins/changepass.jsp</result>
+		<result name="toInfoadmins_success">/admins/private.jsp</result>
+		<result name="success_success">/admins/dealing.jsp</result>
+		<result name="success_failed">/admins/dealing.jsp</result>
+		<result name="tiaozhuan">/admins/bohui.jsp</result>
+		<result name="listmm_success">/admins/message.jsp</result>
+			<result name="update_ss">/admins/updateMessage.jsp</result>
+			<result name="talk">/admins/talk.jsp</result>
+		</action>
+	</package>
+
+	<package name="users" namespace="/users" extends="default">
+		<action name="*_*" class="action.{1}Action" method="{2}">
+		<result name="talk_success">/users_page/talk.jsp</result>
+			<result name="toApply_success">/users_page/apply_finance.jsp</result>
+			<result name="applyFinance_success">/users_page/apply_finance.jsp</result>
+			<result name="applyFinance_uninput">/users_page/apply_finance.jsp</result>
+			<result name="to_upload_img">/users_page/upload_img.jsp</result>
+			<result name="applyFinance_noproof">/users_page/upload_img.jsp</result>
+			
+			<result name="viewFinancing_success">/users_page/financing.jsp</result>
+			<result name="cancel_success">/users_page/financing.jsp</result>
+			<result name="cancel_failed">/error_page/exception.jsp</result>
+			<result name="get_detail">/users_page/findetail.jsp</result>
+			<result name="ppp">/users_page/finsuccess.jsp</result>
+			<result name="viewFinsuccess_success">/users_page/finsuccess.jsp</result>
+			<result name="viewFinfailed_success">/users_page/finfailed.jsp</result>
+			<result name="get_failed_detail">/users_page/failed_detail.jsp</result>
+			
+			<result name="viewFincanceled_success">/users_page/fincanceled.jsp</result>
+			<result name="get_canceled_detail">/users_page/canceled_detail.jsp</result>
+			
+			<result name="unget_detail">/error_page/db_error.jsp</result>
+			
+			<result name="gohome_success">/users_page/home.jsp</result>
+			<result name="logout_success">/login.jsp</result>
+			
+			<result name="toInfo_success">/users_page/user_info.jsp</result>
+			<result name="update_success">/users_page/user_info.jsp</result>
+			<result name="update_failed">/users_page/user_info.jsp</result>
+			
+			<result name="toPwd_success">/users_page/user_pwd.jsp</result>
+			<result name="changePwd_failed">/users_page/user_pwd.jsp</result>
+			<result name="changePwd_success">/users_page/user_pwd.jsp</result>
+			
+			<result name="canceledRefin_uninput">/users_page/canceled2ing.jsp</result>
+			<result name="canceledRefin_success">/users_page/financing.jsp</result>
+			<result name="canceledRefin_failed">/users_page/canceled2ing.jsp</result>
+			
+			<result name="failedRefin_uninput" >/users_page/failed2ing.jsp</result>
+			<result name="failedRefin_success" >/users_page/financing.jsp</result>
+			<result name="failedRefin_failed">/users_page/failed2ing.jsp</result>
+	
+		</action>
+
+		<action name="Userslogin" class="action.UsersAction" method="login">
+			<interceptor-ref name="myinterceptorstack">
+				<param name="myinterceptor.excludeMethods">login</param>
+			</interceptor-ref>
+			<result name="login_success">/users_page/home.jsp</result>
+			<result name="login_admin_success">/admins/index.jsp</result>
+			<result name="login_failed">/login.jsp</result>
+		</action>
+	</package>
+
+	
+
+	<package name="financing" namespace="/finance" extends="default">
+		<action name="*_*" class="action.{1}Action" method="{2}">
+			<result name="add_success">/users_page/home.jsp</result>
+			<result name="add_failed">/index.jsp</result>
+		</action>
+	</package>
+
+
+
+</struts>
+

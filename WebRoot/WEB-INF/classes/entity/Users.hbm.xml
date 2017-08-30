@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="entity.Users" table="users">
+        <id name="uid" type="java.lang.String">
+            <generator class="assigned"/>
+        </id>
+        <property name="jnum" type="java.lang.String"/>
+		<property name="name" type="java.lang.String"/>
+        <property name="gender" type="java.lang.String"/>
+        <property name="username" type="java.lang.String"/>
+		<property name="password" type="java.lang.String"/>
+        <property name="status" type="java.lang.String"/>
+        <property name="department" type="java.lang.String"/>
+		<property name="phone" type="java.lang.String"/>
+        <property name="email" type="java.lang.String"/>
+        <property name="money" type="java.math.BigDecimal"/>
+    </class>
+</hibernate-mapping>
